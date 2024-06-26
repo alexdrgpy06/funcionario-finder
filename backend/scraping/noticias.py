@@ -1,7 +1,8 @@
 import requests
 
 def buscar_noticias(funcionario):
-    url = f'https://newsapi.org/v2/everything?q={funcionario['nombre']}+corrupcion&apiKey=TU_API_KEY'
+    api_key = 'TU_API_KEY'  # Replaza con tu clave de API de NewsAPI
+    url = f'https://newsapi.org/v2/everything?q={funcionario['nombre']}+corrupcion&apiKey={api_key}'
     response = requests.get(url)
-    noticias = response.json.get('articles', [])
+    noticias = response.json().get('articles', [])
     return noticias
