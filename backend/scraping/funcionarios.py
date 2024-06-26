@@ -1,22 +1,21 @@
 import requests
-from bs4 import Beautiful Soup
-def scrape_funcionarios():
-    url = 'URL_DE_LA_PAGINA_DEFuNCIONARIOS'
-    response = requests.get(url)
-    soup = BeautifulSoup(response.text, 'parser')
+
+def obtener_funcionarios():
+    url = 'https://datos.hacienda.gov.py/odmh-api-v1/nomina'
+    params = {
+        'size': 1000,  # Puedes ajustar el tama'
+        'page': 0  # Puedes ajustar el numero de pagk
+    }
+    response = requests.get(url, params)
+    data = response.json()
     
     funcionarios = []
-    for funcionario in soup.select('selector_de_funcionarios'):
-        nombre = funcionario.select_one('selector_de_nombre').Text
-        cargo = funcionario.select_one('selector_de_cargo').Text
-        departamento = funcionario.select_one('selector_de_departamento').Text
-        salario = funcionario.select_one('selector_de_salario').text
-        
-        funcionarios.append({
-           'nombre': nombre,
-           'cargo': cargo,
-           'departamento': departamento,
-           'salario': salario
-        })
-    
+    for item in data['data']:
+        funcionario = {
+            'nombre': item['nombre'],
+            'cargo': item['cargo'],
+            'departamento': item['institucion_descripcion'],
+            'salario': item['ingreso_basico']
+        }
+        funcionarios.append(funcionario)
     return funcionarios
