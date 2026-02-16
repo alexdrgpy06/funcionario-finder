@@ -1,0 +1,108 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is the API documentation for Funcionario Finder.",
+    "version": "1.0.0",
+    "title": "Funcionario Finder API"
+  },
+  "host": "localhost:5000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "funcionarios",
+      "description": "Operations about funcionarios"
+    }
+  ],
+  "paths": {
+    "/api/funcionarios": {
+      "get": {
+        "tags": ["funcionarios"],
+        "summary": "Get list of funcionarios",
+        "description": "Returns a list of funcionarios with optional filters for department and cargo",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "name": "departamento",
+            "in": "query",
+            "description": "Department to filter by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "cargo",
+            "in": "query",
+            "description": "Cargo to filter by",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "Page number",
+            "required": false,
+            "type": "integer",
+            "default": 1
+          },
+          {
+            "name": "per_page",
+            "in": "query",
+            "description": "Number of results per page",
+            "required": false,
+            "type": "integer",
+            "default": 10
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Funcionario"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Funcionario": {
+      "type": "object",
+      "properties": {
+        "nombre": {
+          "type": "string"
+        },
+        "cargo": {
+          "type": "string"
+        },
+        "departamento": {
+          "type": "string"
+        },
+        "salario": {
+          "type": "number"
+        },
+        "noticias": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Noticia"
+          }
+        }
+      }
+    },
+    "Noticia": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
