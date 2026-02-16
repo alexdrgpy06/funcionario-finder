@@ -1,12 +1,10 @@
 """
-Author: Alejandro Ramírez
+ * Author: Alejandro Ramírez
+ * Project: funcionario-finder
+ * Logic: Corruption intelligence logic for computing risk indices and mapping \n * institutional relationships based on positional weightings and data heuristics.
+ """
 
-Corruption Intelligence Engine
-Computes risk indices and maps relationships between public officials
-based on multi-source data points.
-"""
-
-class CorruptionAudit:
+class CorruptionAuditLogic:
     def __init__(self):
         # Weighting factors for the index
         self.WEIGHTS = {

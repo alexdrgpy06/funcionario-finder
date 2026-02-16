@@ -1,17 +1,14 @@
 """
-Author: Alejandro Ramírez
-
-Funcionario Finder API (Unified Version)
-A comprehensive transparency platform designed to query, track, and audit 
-information about public officials. It integrates scraping, relationship mapping, 
-and automated risk assessment.
-"""
+ * Author: Alejandro Ramírez
+ * Project: funcionario-finder
+ * Logic: Transparency API for querying public official data, integrating \n * multi-source scraping, news surveillance, and automated corruption risk assessment.
+ """
 
 from flask import Flask, jsonify, request
 from flask_caching import Cache
 from scraping.funcionarios import obtener_funcionarios
 from scraping.noticias import buscar_noticias
-from intelligence import CorruptionAudit
+from intelligence import CorruptionAuditLogic as CorruptionAudit
 
 app = Flask(__name__)
 cache = Cache(app, config={'CACHE_TYPE': 'simple'})
